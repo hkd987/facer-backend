@@ -5,7 +5,7 @@ import { makeExecutableSchema } from 'graphql-tools'
 
 require('dotenv').config()
 const PORT = process.env.PORT || 5007
-
+const ENDPOINT = process.env.ENDPOINT || '/graphql'
 // Some fake data
 const books = [
   {
@@ -38,9 +38,9 @@ const schema = makeExecutableSchema({
 const app = express()
 app.use(bodyParser.json())
 // The GraphQL endpoint
-app.use('/graphql', graphqlExpress({ schema }))
+app.use(ENDPOINT, graphqlExpress({ schema }))
 // GraphiQL, a visual editor for queries
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
+app.use('/graphiql', graphiqlExpress({ endpointURL: ENDPOINT }))
 
 app.get('/', (req, res) => {
   res.send('WE ARE LIVE')
