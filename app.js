@@ -3,31 +3,15 @@ import bodyParser from 'body-parser'
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import { makeExecutableSchema } from 'graphql-tools'
 
+// The GraphQL schema in string form
+import typeDefs from './src/schema'
+// The resolvers
+import resolvers from './src/resolvers'
+
+// private info setup
 require('dotenv').config()
 const PORT = process.env.PORT || 5007
 const ENDPOINT = process.env.ENDPOINT || '/graphql'
-// Some fake data
-const books = [
-  {
-    title: "Harry Potter and the Sorcerer's stone",
-    author: 'J.K. Rowling'
-  },
-  {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton'
-  }
-]
-
-// The GraphQL schema in string form
-const typeDefs = `
-  type Query { books: [Book] }
-  type Book { title: String, author: String }
-`
-
-// The resolvers
-const resolvers = {
-  Query: { books: () => books }
-}
 
 // Put together a schema
 const schema = makeExecutableSchema({
