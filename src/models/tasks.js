@@ -1,6 +1,6 @@
 export default (sequelize, DataTypes) => {
   var Task = sequelize.define('task', {
-    title: DataTypes.STRING
+    text: DataTypes.STRING
   })
 
   Task.associate = function (models) {

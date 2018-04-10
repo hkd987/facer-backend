@@ -1,8 +1,7 @@
-export default `
-  type Query {
-    books: [Book]
-  }
-  type Book {
-    title: String, author: String
-  }
-`
+// ./graphql/typeDefs.js
+import path from 'path'
+import { fileLoader, mergeTypes } from 'merge-graphql-schemas'
+
+const typesArray = fileLoader(path.join(__dirname, './types'))
+
+export default mergeTypes(typesArray, { all: true })

@@ -1,0 +1,9 @@
+type Tasks {
+    id: Int!
+    text: String!
+    user: User!
+  }
+
+type Query {
+    tasks(id: Int!): Tasks
+  }
