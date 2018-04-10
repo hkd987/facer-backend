@@ -7,6 +7,8 @@ import { makeExecutableSchema } from 'graphql-tools'
 import typeDefs from './src/schema'
 // The resolvers
 import resolvers from './src/resolvers'
+// The models
+import models from './src/models'
 
 // private info setup
 require('dotenv').config()
@@ -21,15 +23,15 @@ const schema = makeExecutableSchema({
 
 const app = express()
 app.use(bodyParser.json())
-// The GraphQL endpoint
+
+// The GraphQL endpoint && GraphiQL, a visual editor for queries
 app.use(ENDPOINT, graphqlExpress({ schema }))
-// GraphiQL, a visual editor for queries
 app.use('/graphiql', graphiqlExpress({ endpointURL: ENDPOINT }))
 
-app.get('/', (req, res) => {
-  res.send('WE ARE LIVE')
-})
+app.get('/', (req, res) => { res.send('WE ARE LIVE') })
 
-app.listen(PORT, () => {
-  console.log(`Express is up on ${PORT}`)
+models.sequelize.sync().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Express is up on ${PORT}`)
+  })
 })
