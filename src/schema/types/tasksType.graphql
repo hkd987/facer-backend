@@ -5,5 +5,10 @@ type Tasks {
   }
 
 type Query {
-    tasks(id: Int!): Tasks
+    getTask(id: Int!): Tasks
+    allTasks: [Tasks]!
+  }
+
+  type Mutation {
+    createTask(username: String!, text: String!): Tasks!
   }

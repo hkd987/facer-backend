@@ -1,14 +1,7 @@
-const books = [
-  {
-    title: "Harry Potter and the Sorcerer's stone",
-    author: 'J.K. Rowling'
-  },
-  {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton'
-  }
-]
+// ./graphql/resolvers.js
+import path from 'path'
+import { fileLoader, mergeResolvers } from 'merge-graphql-schemas'
 
-export default {
-  Query: { books: () => books }
-}
+const resolversArray = fileLoader(path.join(__dirname, './resolvers'))
+
+export default mergeResolvers(resolversArray)
