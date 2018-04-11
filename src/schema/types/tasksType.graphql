@@ -6,7 +6,7 @@ type Tasks {
 
 type Query {
     getTask(id: Int!): Tasks
-    allTasks(userId: Int!): [Tasks]!
+    allTasks: [Tasks]!
   }
 
   type Mutation {
