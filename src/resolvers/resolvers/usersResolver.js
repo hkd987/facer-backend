@@ -1,9 +1,15 @@
 export default {
   Query: {
-    getUser: () => {},
-    allUsers: () => {}
+    getUser: (parent, {id}, info, {models}) => {
+      modesl.User.findOne({where: { id }})
+    },
+    allUsers: () => {
+      modesl.User.findAll()
+    }
   },
   Mutation: {
-    createUser: () => {}
+    createUser: (parent, args, info, {models}) => {
+      models.User.create(args)
+    }
   }
 }

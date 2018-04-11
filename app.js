@@ -25,7 +25,11 @@ const app = express()
 app.use(bodyParser.json())
 
 // The GraphQL endpoint && GraphiQL, a visual editor for queries
-app.use(ENDPOINT, graphqlExpress({ schema }))
+app.use(ENDPOINT, graphqlExpress({ schema,
+  context: {
+    models
+  }
+}))
 app.use('/graphiql', graphiqlExpress({ endpointURL: ENDPOINT }))
 
 app.get('/', (req, res) => { res.send('WE ARE LIVE') })
