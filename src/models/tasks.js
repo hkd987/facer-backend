@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  var Task = sequelize.define('task', {
+  const Task = sequelize.define('task', {
     text: DataTypes.STRING
   })
 

@@ -2,6 +2,7 @@ import Sequelize from 'sequelize'
 const sequelize = new Sequelize('database', 'username', 'password', {
   // sqlite! now!
   dialect: 'sqlite',
+  omitNull: true,
   // the storage engine for sqlite
   // - default ':memory:'
   storage: './database.sqlite'

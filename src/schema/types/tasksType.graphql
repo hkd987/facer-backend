@@ -1,14 +1,14 @@
 type Tasks {
     id: Int!
     text: String!
-    user: User!
+    userId: User!
   }
 
 type Query {
     getTask(id: Int!): Tasks
-    allTasks: [Tasks]!
+    allTasks(userId: Int!): [Tasks]!
   }
 
   type Mutation {
-    createTask(username: String!, text: String!): Tasks!
+    createTask(userId: Int!, text: String!): Tasks!
   }
