@@ -29,7 +29,7 @@ app.use(ENDPOINT, graphqlExpress({ schema,
   context: {
     models,
     token: {
-      id: 1
+      id: 1 // will be passed as a web token
     }
   }
 }))
