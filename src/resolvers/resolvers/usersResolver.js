@@ -3,7 +3,7 @@ export default {
     getUser: (parent, { id }, { models }) => {
       return models.User.findOne({ where: { id } })
     },
-    allUsers: () => {
+    allUsers: (parent, args, { models }) => {
       return models.User.findAll()
     }
   },
