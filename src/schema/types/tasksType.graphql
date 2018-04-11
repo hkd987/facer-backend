@@ -1,6 +1,6 @@
 type Tasks {
     id: Int!
-    text: String!
+    todo: String!
     userId: User!
   }
 
@@ -10,5 +10,5 @@ type Query {
   }
 
   type Mutation {
-    createTask(userId: Int!, text: String!): Tasks!
+    createTask(todo: String!): Tasks!
   }
