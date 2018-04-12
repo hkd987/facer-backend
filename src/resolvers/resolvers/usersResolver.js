@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs'
 import { tryLogin } from '../../auth'
+import { formatErrors } from '../../helperFunctions/formatErrors'
 
 export default {
   Query: {
@@ -17,10 +18,16 @@ export default {
     register: async (parent, { password, ...otherArgs }, { models }) => {
       try {
         const hashedPassword = await bcrypt.hash(password, 12)
-        await models.User.create({...otherArgs, password: hashedPassword})
-        return true
+        const user = await models.User.create({...otherArgs, password: hashedPassword})
+        return {
+          ok: true,
+          user
+        }
       } catch (e) {
-        return false
+        return {
+          ok: false,
+          errors: formatErrors(e, models)
+        }
       }
     }
   }
