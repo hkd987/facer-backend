@@ -1,14 +1,26 @@
 type User {
-    id: Int!
-    username: String!
-    tasks: [Tasks!]!
-  }
+  id: Int!
+  username: String!
+  tasks: [Tasks!]!
+}
 
 type Query {
-    getUser(id: Int!): User!
-    allUsers: [User]!
-  }
+  getUser(id: Int!): User!
+  allUsers: [User]!
+}
+
+type RegisterResponse {
+  ok: Boolean!
+  user: User
+}
+
+type LoginResponse {
+  ok: Boolean!
+  token: String
+  refreshToken: String
+}
 
 type Mutation {
-  createUser(username: String!, password: String!): User!
+  register(username: String!, password: String!): Boolean!
+  login(username: String!, password: String!): LoginResponse!
 }

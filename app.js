@@ -12,8 +12,10 @@ import models from './src/models'
 
 // private info setup
 require('dotenv').config()
-const PORT = process.env.PORT || 5007
+const PORT = process.env.PORT || 5008
 const ENDPOINT = process.env.ENDPOINT || '/graphql'
+const SECRET = process.env.SECRET || 'sfgsfgtrewtgnasvksdafnvsdfkgnakfga'
+const SECRET2 = process.env.SECRET2 || 'vnmvnbmioyiukhlhjeqwrewqzcxvczxvfgsd'
 
 // Put together a schema
 const schema = makeExecutableSchema({
@@ -30,7 +32,9 @@ app.use(ENDPOINT, graphqlExpress({ schema,
     models,
     token: {
       id: 1 // will be passed as a web token
-    }
+    },
+    SECRET,
+    SECRET2
   }
 }))
 
